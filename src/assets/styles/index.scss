@@ -1,0 +1,17 @@
+* {
+  scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+  color: #DCDCDC;
+}
+
+body {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/public/chroma.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
