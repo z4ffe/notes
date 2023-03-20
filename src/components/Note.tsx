@@ -8,7 +8,17 @@ const Note = () => {
    const {notes, setNotes} = useContext(NotesListContext)
 
    if (!active) return <Box />
-   return <Box sx={{gridArea: 'note', width: '100%', height: '100%', backgroundColor: '#1E1E1E'}}>{notes[active - 1].text}</Box>
+   return (
+      <Box
+         sx={{
+            gridArea: 'note',
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#1E1E1E',
+         }}>
+         {notes.filter((el) => el.id === active)[0].text}
+      </Box>
+   )
 }
 
 export default Note

@@ -1,4 +1,4 @@
-import React, {createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState} from 'react'
+import React, {createContext, Dispatch, ReactNode, SetStateAction, useEffect, useLayoutEffect, useState} from 'react'
 
 type ChildrenProps = {
    children: ReactNode
@@ -25,15 +25,10 @@ const NotesListProvider: React.FC<ChildrenProps> = ({children}): JSX.Element => 
    const [notes, setNotes] = useState([])
 
    useEffect(() => {
-      const tempArr = [
-         {
-            id: 1,
-            header: 'Header',
-            text: 'localStorage',
-            date: new Date().toLocaleDateString().replaceAll('/', '.'),
-         },
-      ]
-      localStorage.setItem('notes', JSON.stringify(tempArr))
+      localStorage.setItem('notes', JSON.stringify(notes))
+   }, [notes])
+
+   useLayoutEffect(() => {
       const localData = localStorage.getItem('notes') as string
       if (localData) setNotes(JSON.parse(localData))
    }, [])
