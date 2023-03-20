@@ -17,6 +17,7 @@ const SidebarNoteElement: React.FC<IListNotes> = ({id, header, text, date}): JSX
             padding: '10px',
             height: '75px',
             transition: '.2s',
+
             backgroundColor: `${active === id ? '#007AFF' : 'transparent'}`,
          }}>
          <Box>
@@ -24,7 +25,7 @@ const SidebarNoteElement: React.FC<IListNotes> = ({id, header, text, date}): JSX
                {header}
             </Typography>
          </Box>
-         <Box sx={{display: 'flex'}}>
+         <Box sx={{display: 'flex', overflow: 'hidden'}}>
             <Typography component='p'>{date}</Typography>
             <Typography component='p'>{text.slice(0, 25)}...</Typography>
          </Box>
@@ -33,3 +34,5 @@ const SidebarNoteElement: React.FC<IListNotes> = ({id, header, text, date}): JSX
 }
 
 export default SidebarNoteElement
+
+/* text.slice(0, 25) */

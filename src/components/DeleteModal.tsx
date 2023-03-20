@@ -15,6 +15,7 @@ const DeleteModal: React.FC<IProps> = ({open, setOpen}) => {
    const handleDeleteNote = () => {
       const newNotesList = notes.filter((el) => el.id !== active)
       setNotes(newNotesList)
+      setActive(null)
       setOpen(!open)
    }
 

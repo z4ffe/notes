@@ -10,9 +10,9 @@ const Topbar = () => {
    const addNewNote = () => {
       const modifiedList = [...notes]
       modifiedList.push({
-         id: modifiedList.length + 1,
-         header: 'Header',
-         text: 'Body text, Body text, Body text, ',
+         id: Math.random(),
+         header: '',
+         text: '',
          date: new Date().toLocaleDateString().replaceAll('/', '.'),
       })
       setNotes(modifiedList)
