@@ -13,7 +13,7 @@ const Topbar = () => {
          id: modifiedList.length + 1,
          header: 'Header',
          text: 'Body text, Body text, Body text, ',
-         date: new Date().toLocaleString(),
+         date: new Date().toLocaleDateString().replaceAll('/', '.'),
       })
       setNotes(modifiedList)
    }

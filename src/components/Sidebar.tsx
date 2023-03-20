@@ -1,16 +1,18 @@
-import {Box, Button, Typography} from '@mui/material'
-import React, {useContext} from 'react'
+import {Box, Button} from '@mui/material'
+import React, {useContext, useState} from 'react'
 import trash from '../assets/images/trash.svg'
 import {NotesActiveContext} from '../providers/NotesActiveProvider'
 import {NotesListContext} from '../providers/NotesListProvider'
+import DeleteModal from './DeleteModal'
+import SidebarNoteElement from './SidebarNoteElement'
 
 const Sidebar = () => {
    const {notes, setNotes} = useContext(NotesListContext)
    const {active, setActive} = useContext(NotesActiveContext)
+   const [open, setOpen] = useState(false)
 
-   const handleDeleteNote = (): void => {
-      const newNotesList = notes.filter((el) => el.id !== active)
-      setNotes(newNotesList)
+   const handleDeleteModal = (): void => {
+      if (active) setOpen(!open)
    }
 
    return (
@@ -18,6 +20,7 @@ const Sidebar = () => {
          sx={{
             display: 'flex',
             flexDirection: 'column',
+            margin: '0 auto',
             gridArea: 'sidebar',
             width: '310px',
             height: '100%',
@@ -25,19 +28,16 @@ const Sidebar = () => {
             borderRight: '1px solid black',
          }}>
          <Box sx={{display: 'flex'}}>
-            <Button disableRipple sx={{':hover': {backgroundColor: 'transparent'}}} onClick={handleDeleteNote}>
+            <Button disableRipple sx={{':hover': {backgroundColor: 'transparent'}}} onClick={handleDeleteModal}>
                <Box component='img' src={trash} />
             </Button>
          </Box>
-         <Box>
+         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             {notes.map((el) => (
-               <Box key={el.id} onClick={() => setActive(el.id)}>
-                  <Typography>{el.header}</Typography>
-                  <Typography>{el.text}</Typography>
-                  <Typography>{el.date}</Typography>
-               </Box>
+               <SidebarNoteElement key={el.id} {...el} />
             ))}
          </Box>
+         <DeleteModal open={open} setOpen={setOpen} />
       </Box>
    )
 }
