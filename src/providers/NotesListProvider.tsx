@@ -4,7 +4,7 @@ type ChildrenProps = {
    children: ReactNode
 }
 
-interface INotes {
+interface IListNotes {
    id: number
    header: string
    text: string
@@ -12,8 +12,8 @@ interface INotes {
 }
 
 export interface INotesContext {
-   notes: INotes[]
-   setNotes: Dispatch<SetStateAction<INotes[] | any>>
+   notes: IListNotes[]
+   setNotes: Dispatch<SetStateAction<IListNotes[] | any>>
 }
 
 export const NotesListContext = createContext<INotesContext>({
@@ -21,10 +21,10 @@ export const NotesListContext = createContext<INotesContext>({
    setNotes: () => {},
 })
 
-const NotesProvider: React.FC<ChildrenProps> = ({children}): JSX.Element => {
+const NotesListProvider: React.FC<ChildrenProps> = ({children}): JSX.Element => {
    const [notes, setNotes] = useState([])
 
    return <NotesListContext.Provider value={{notes, setNotes}}>{children}</NotesListContext.Provider>
 }
 
-export default NotesProvider
+export default NotesListProvider

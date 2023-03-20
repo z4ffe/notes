@@ -1,19 +1,39 @@
 import {Box, Button} from '@mui/material'
 import React, {useContext} from 'react'
-import {NotesListContext} from '../providers/NotesProvider'
+import newNote from '../assets/images/new-note.svg'
+import fontStyle from '../assets/images/font-style.svg'
+import {NotesListContext} from '../providers/NotesListProvider'
 
 const Topbar = () => {
    const {notes, setNotes} = useContext(NotesListContext)
 
    const addNewNote = () => {
       const modifiedList = [...notes]
-      modifiedList.push({id: modifiedList.length + 1, header: 'asdsad', text: 'asdsad', date: 'asdsad'})
+      modifiedList.push({
+         id: modifiedList.length + 1,
+         header: 'Header',
+         text: 'Body text, Body text, Body text, ',
+         date: new Date().toLocaleString(),
+      })
       setNotes(modifiedList)
    }
 
    return (
-      <Box sx={{gridArea: 'topbar', width: '100%', height: '50px', backgroundColor: '#242122'}}>
-         <Button onClick={addNewNote}>Add Note</Button>
+      <Box
+         sx={{
+            gridArea: 'topbar',
+            display: 'flex',
+            width: '100%',
+            height: '50px',
+            backgroundColor: '#242122',
+            alignItems: 'center',
+         }}>
+         <Button onClick={addNewNote} disableRipple sx={{':hover': {backgroundColor: 'transparent'}}}>
+            <Box component='img' src={newNote} />
+         </Button>
+         <Button disableRipple sx={{':hover': {backgroundColor: 'transparent'}}}>
+            <Box component='img' src={fontStyle} />
+         </Button>
       </Box>
    )
 }
