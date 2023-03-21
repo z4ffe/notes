@@ -5,17 +5,17 @@ type ChildrenProps = {
 }
 
 export interface INotesContext {
-   active: number | null
+   active: string
    setActive: Dispatch<SetStateAction<number | any>>
 }
 
 export const NotesActiveContext = createContext<INotesContext>({
-   active: null,
+   active: '',
    setActive: () => {},
 })
 
 const NotesActiveProvider: React.FC<ChildrenProps> = ({children}): JSX.Element => {
-   const [active, setActive] = useState(null)
+   const [active, setActive] = useState('')
 
    return <NotesActiveContext.Provider value={{active, setActive}}>{children}</NotesActiveContext.Provider>
 }

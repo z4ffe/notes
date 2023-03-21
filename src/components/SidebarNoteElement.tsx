@@ -3,7 +3,7 @@ import React, {useContext} from 'react'
 import {NotesActiveContext} from '../providers/NotesActiveProvider'
 import {IListNotes} from '../providers/NotesListProvider'
 
-const SidebarNoteElement: React.FC<IListNotes> = ({id, header, text, date}): JSX.Element => {
+const SidebarNoteElement: React.FC<IListNotes> = ({id, text, date}): JSX.Element => {
    const {active, setActive} = useContext(NotesActiveContext)
 
    return (

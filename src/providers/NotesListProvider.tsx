@@ -5,7 +5,7 @@ type ChildrenProps = {
 }
 
 export interface IListNotes {
-   id: number
+   id: string
    text: string
    date: string
 }
