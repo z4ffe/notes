@@ -1,10 +1,11 @@
+import {Box} from '@mui/material'
 import React from 'react'
 
 interface IMarkdownRendererProps {
    markdown: string
 }
 
-const parseMarkdown = (markdown: string): string => {
+const parseMarkdown = (markdown: string): JSX.Element => {
    let html = markdown
    html = html.replace(/^# (.+)/gm, '<h1>$1</h1>')
    html = html.replace(/^## (.+)/gm, '<h2>$1</h2>')
@@ -15,8 +16,7 @@ const parseMarkdown = (markdown: string): string => {
    html = html.replace(/```([\s\S]*?)```/g, '<pre>$1</pre>')
    html = html.replace(/`([^`]+)`/g, '<code>$1</code>')
    html = html.replace(/\n\n/gm, '</p><p>')
-   html = `<p>${html}</p>`
-   return html
+   return <Box dangerouslySetInnerHTML={{__html: html}} />
 }
 
 const MarkdownRenderer: React.FC<IMarkdownRendererProps> = ({markdown}) => {

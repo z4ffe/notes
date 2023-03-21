@@ -20,19 +20,12 @@ const SidebarNoteElement: React.FC<IListNotes> = ({id, header, text, date}): JSX
 
             backgroundColor: `${active === id ? '#007AFF' : 'transparent'}`,
          }}>
-         <Box>
-            <Typography component='p' sx={{fontWeight: '500'}}>
-               {header}
-            </Typography>
-         </Box>
-         <Box sx={{display: 'flex', overflow: 'hidden'}}>
+         <Box sx={{display: 'flex', flexDirection: 'column', overflow: 'hidden'}}>
             <Typography component='p'>{date}</Typography>
-            <Typography component='p'>{text.slice(0, 25)}...</Typography>
+            <Typography component='p'>{text.length > 28 ? `${text.slice(0, 28)}...` : text}</Typography>
          </Box>
       </Box>
    )
 }
 
 export default SidebarNoteElement
-
-/* text.slice(0, 25) */

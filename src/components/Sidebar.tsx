@@ -5,6 +5,7 @@ import {NotesActiveContext} from '../providers/NotesActiveProvider'
 import {NotesListContext} from '../providers/NotesListProvider'
 import DeleteModal from './DeleteModal'
 import SidebarNoteElement from './SidebarNoteElement'
+import WindowButtons from './WindowButtons'
 
 const Sidebar = () => {
    const {notes, setNotes} = useContext(NotesListContext)
@@ -27,12 +28,13 @@ const Sidebar = () => {
             backgroundColor: '#262223',
             borderRight: '1px solid black',
          }}>
-         <Box sx={{display: 'flex'}}>
-            <Button disableRipple sx={{':hover': {backgroundColor: 'transparent'}}} onClick={handleDeleteModal}>
+         <Box sx={{display: 'flex', height: '50px'}}>
+            <WindowButtons />
+            <Button disableRipple sx={{marginLeft: 'auto', ':hover': {backgroundColor: 'transparent'}}} onClick={handleDeleteModal}>
                <Box component='img' src={trash} />
             </Button>
          </Box>
-         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', borderTop: '1.5px solid #474444', paddingTop: '10px'}}>
             {notes.map((el) => (
                <SidebarNoteElement key={el.id} {...el} />
             ))}
