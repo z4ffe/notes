@@ -2,6 +2,7 @@ import {Box, Typography} from '@mui/material'
 import React, {useContext} from 'react'
 import {NotesActiveContext} from '../providers/NotesActiveProvider'
 import {IListNotes} from '../providers/NotesListProvider'
+import MarkdownRenderer from './MarkdownRenderer'
 
 const SidebarNoteElement: React.FC<IListNotes> = ({id, text, date}): JSX.Element => {
    const {active, setActive} = useContext(NotesActiveContext)
@@ -22,7 +23,9 @@ const SidebarNoteElement: React.FC<IListNotes> = ({id, text, date}): JSX.Element
          }}>
          <Box sx={{display: 'flex', flexDirection: 'column', overflow: 'hidden'}}>
             <Typography component='p'>{date}</Typography>
-            <Typography component='p'>{text.length > 28 ? `${text.slice(0, 28)}...` : text}</Typography>
+            <Typography component='p' sx={{height: '40px'}}>
+               <MarkdownRenderer markdown={text} />
+            </Typography>
          </Box>
       </Box>
    )
